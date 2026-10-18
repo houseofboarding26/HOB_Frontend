@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #F5C842;
+  --color-primary-dark: #e0b030;
+  --color-secondary: #1A3DAB;
+  --color-secondary-dark: #152f88;
+  --color-success: #1D9E75;
+  --color-error: #E74C3C;
+
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: "Fraunces", "Inter", Georgia, serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-gray-50);
+    color: var(--color-gray-900);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    letter-spacing: -0.005em;
+  }
+  /* Warm, high-end display serif for the marketing headings.
+     Opt in per element with the `font-display` utility. */
+  .font-display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    letter-spacing: -0.02em;
+  }
+}
+.hob-logo {
+    max-width: 120px;
+}
+@media (min-width: 640px) {
+  .hob-logo {
+    max-width: 150px;
+  }
+}
+.hob-sidebar-logo {
+    max-width: 100px;
+    margin: auto;
+    margin-bottom: 15px;
+    filter: brightness(0)invert(1);
+}
+.hob-login-page-logo {
+    max-width: 120px;
+    margin-bottom: 40px;
+    filter: brightness(0)invert(1);
+}
+footer .hob-login-page-logo {
+  margin-bottom: 0;
+}
+
+/* ── Home page premium effects ──────────────────────────────────────────── */
+@keyframes hob-floaty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+.animate-floaty      { animation: hob-floaty 6s ease-in-out infinite; }
+.animate-floaty-slow { animation: hob-floaty 9s ease-in-out infinite; }
+
+@keyframes hob-blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(24px, -28px) scale(1.12); }
+  66%      { transform: translate(-22px, 20px) scale(0.94); }
+}
+.animate-blob { animation: hob-blob 16s ease-in-out infinite; }
+
+.hero-dots {
+  background-image: radial-gradient(circle at 1px 1px, rgba(26, 61, 171, 0.10) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+.text-gradient-brand {
+  background: linear-gradient(90deg, #1A3DAB 0%, #4f6ef0 55%, #F5C842 130%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 18px 40px -18px rgba(26, 61, 171, 0.35);
+}
+.section-eyebrow { letter-spacing: 0.12em; }
+.card-lift {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 50px -24px rgba(17, 24, 39, 0.35);
+}
+
+/* Video swiper dots */
+.video-swiper-dots .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #d1d5db;
+  opacity: 1;
+}
+.video-swiper-dots .swiper-pagination-bullet-active {
+  width: 24px;
+  border-radius: 4px;
+  background: #1A3DAB;
+}
