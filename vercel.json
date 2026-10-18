@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://hob-beta.vercel.app/api/:path*"
+      "destination": "https://hob-backend-pearl.vercel.app/api/:path*"
     },
     {
       "source": "/(.*)",
