@@ -5,7 +5,7 @@ export default function CancellationPolicy() {
     <LegalPage
       title="Refund & Cancellation Policy"
       subtitle="Applicable to all Bookings made through the House of Boarding platform"
-      lastUpdated="Effective Date: [Insert Date] · Version 1.0"
+      lastUpdated="Effective Date: 18 October 2026 · Version 1.0"
     >
       <Section n={1} title="Scope">
         <p>

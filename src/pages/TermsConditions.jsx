@@ -5,7 +5,7 @@ export default function TermsConditions() {
     <LegalPage
       title="Terms & Conditions"
       subtitle="Platform Terms of Use for Pet Parents/Customers and Hospitality Partners/Hosts"
-      lastUpdated="Effective Date: [Insert Date] · Version 1.0"
+      lastUpdated="Effective Date: 18 October 2026 · Version 1.0"
     >
       <Section n={1} title="Acceptance of Terms">
         <p>
@@ -88,7 +88,7 @@ export default function TermsConditions() {
         <ul className="list-none space-y-2">
           <li><span className="font-medium">9.1</span> House of Boarding has zero tolerance for cruelty, neglect, or abandonment of animals. All users must comply with the Prevention of Cruelty to Animals Act, 1960, the rules made thereunder (including the Prevention of Cruelty to Animals (Dog Breeding and Marketing) Rules, 2017, the Prevention of Cruelty to Animals (Pet Shop) Rules, 2018, and the Prevention of Cruelty to Animals (Care and Maintenance of Case Property Animals) Rules, 2017, as applicable), the animal-cruelty provisions of the Bharatiya Nyaya Sanhita, 2023, and the Wildlife (Protection) Act, 1972.</li>
           <li><span className="font-medium">9.2</span> Hospitality Partners/Hosts must provide humane, hygienic, and species-appropriate care, including adequate food, water, shelter, exercise, and veterinary attention where needed.</li>
-          <li><span className="font-medium">9.3</span> Pet Parents/Customers must not abandon a pet at a Hospitality Partner/Host's facility. "Abandonment" includes failing to retrieve a pet within a reasonable period after the agreed check-out date without communication or payment of outstanding dues. Abandonment may be reported to the appropriate authorities (including local police and animal welfare organisations) and may result in the pet being handed over by the host to a recognised animal shelter or welfare body or any other person, in accordance with the on-site agreement executed between the Pet Parent/Customer and the Hospitality Partner/Host (see Section 14).</li>
+          <li><span className="font-medium">9.3</span> Pet Parents/Customers must not abandon a pet at a Hospitality Partner/Host's facility. "Abandonment" includes failing to retrieve a pet within a reasonable period after the agreed check-out date without communication or payment of outstanding dues. Abandonment may be reported to the appropriate authorities (including local police and animal welfare organisations) and may result in the pet being handed over by the host to a recognised animal welfare organisation, shelter, or the appropriate municipal/animal-control authority, in accordance with applicable law, or may proceed to the legal and secure adoption of the pet by a capable and willing person, in accordance with the on-site agreement executed between the Pet Parent/Customer and the Hospitality Partner/Host (see Section 14).</li>
           <li><span className="font-medium">9.4</span> Any user who becomes aware of suspected cruelty, neglect, or abandonment is encouraged to report it immediately to the local police, the State Animal Welfare Board, or the Animal Welfare Board of India.</li>
           <li><span className="font-medium">9.5</span> House of Boarding may suspend or permanently remove any account associated with credible reports of cruelty, neglect, or abandonment, and may cooperate with law enforcement and statutory authorities as required by law.</li>
         </ul>
@@ -196,8 +196,8 @@ export default function TermsConditions() {
         <p>
           For any questions about these Terms, please contact us at{' '}
           <a href="tel:+919890607240" className="text-secondary font-semibold hover:underline">+91-9890607240</a>{' '}
-          or write to{' '}
-          <a href="mailto:houseofboarding@gmail.com" className="text-secondary font-semibold hover:underline">houseofboarding@gmail.com</a>.
+          or write to House of Boarding at{' '}
+          <a href="mailto:support@houseofboarding.com" className="text-secondary font-semibold hover:underline">support@houseofboarding.com</a>.
         </p>
       </Section>
 
@@ -223,7 +223,7 @@ export default function TermsConditions() {
           <div>
             <p className="font-semibold text-gray-800 mb-1">A.2 Companion Birds (Non-Native / Exotic Only)</p>
             <p className="mb-2">Native Indian wild bird species (including but not limited to the rose-ringed parakeet, common myna, house sparrow, munias, and all raptors, owls, and migratory species) are <span className="font-semibold">strictly protected</span> under the Wildlife (Protection) Act, 1972 and MUST NOT be kept as pets or boarded on the Platform under any circumstances.</p>
-            <p className="mb-1">Commonly kept exotic/non-native companion birds that may be boarded (where the Pet Parent/Customer holds valid proof of lawful acquisition) include:</p>
+            <p className="mb-1">Commonly kept exotic/non-native companion birds, which may be boarded where the Pet Parent/Customer holds valid proof of lawful acquisition (and, where applicable, registration under the Government of India's voluntary exotic-species disclosure framework or CITES documentation for CITES-listed species such as macaws, cockatoos, and African grey parrots), include:</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>Budgerigars (budgies)</li>
               <li>Cockatiels</li>
@@ -237,14 +237,14 @@ export default function TermsConditions() {
 
           <div>
             <p className="font-semibold text-gray-800 mb-1">A.3 Small Mammals / Rodents</p>
-            <p className="mb-1">Commonly kept small mammals generally legal to keep as pets in India include:</p>
+            <p className="mb-1">Commonly kept small mammals that are generally legal to keep as pets in India (subject to the animal not being wild-caught and not falling under any Wildlife Protection Act Schedule) include:</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>Rabbits (domesticated breeds)</li>
               <li>Guinea pigs</li>
               <li>Hamsters (Syrian and dwarf varieties)</li>
               <li>Domesticated fancy rats and mice</li>
             </ul>
-            <p className="mt-2 text-gray-500 text-xs">Note: some small mammal species are restricted or banned from import/keeping in certain jurisdictions. Hospitality Partners/Hosts and Pet Parents/Customers should independently confirm the legal status of any less-common small mammal before listing or booking.</p>
+            <p className="mt-2 text-gray-500 text-xs">Note: some small mammal species are restricted or banned from import/keeping in certain jurisdictions due to invasive-species or agricultural-pest concerns (for example, certain species of gerbil). Hospitality Partners/Hosts and Pet Parents/Customers should independently confirm the legal status of any less-common small mammal before listing or booking.</p>
           </div>
 
           <div>

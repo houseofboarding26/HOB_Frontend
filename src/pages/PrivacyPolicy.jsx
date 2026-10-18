@@ -5,23 +5,25 @@ export default function PrivacyPolicy() {
     <LegalPage
       title="Privacy Policy"
       subtitle="Governing the collection, use and disclosure of personal data on the House of Boarding platform"
-      lastUpdated="Effective Date: [Insert Date] · Version 1.0"
+      lastUpdated="Effective Date: 18 October 2026 · Version 1.0"
     >
-      <p className="text-gray-600 text-sm leading-relaxed mb-7">
-        House of Boarding ("House of Boarding", "Platform", "we", "us", "our") operates the website{' '}
-        <span className="font-medium">houseofboarding.com</span>, which connects Pet Parents/Customers seeking
-        boarding and related pet-care services with independent Hospitality Partners/Hosts who list such services.
-        This Privacy Policy explains what personal data we collect, why we collect it, how it is used, stored,
-        shared and protected, and the rights available to you as a "Data Principal" under the Digital Personal
-        Data Protection Act, 2023 and the Digital Personal Data Protection Rules, 2025 (together, the "DPDP Act"),
-        and other applicable Indian laws including the Information Technology Act, 2000 and rules made thereunder.
-      </p>
-      <p className="text-gray-600 text-sm leading-relaxed mb-7">
-        By creating an account, browsing, or using any part of the Platform, you consent to the collection and
-        processing of your personal data as described in this Policy. If you do not agree, please do not use the Platform.
-      </p>
-
       <Section n={1} title="Introduction">
+        <p>
+          House of Boarding ("House of Boarding", "Platform", "we", "us", "our") operates the website{' '}
+          <span className="font-medium">houseofboarding.com</span>, which connects Pet Parents/Customers seeking
+          boarding and related pet-care services with independent Hospitality Partners/Hosts who list such services.
+          This Privacy Policy explains what personal data we collect, why we collect it, how it is used, stored,
+          shared and protected, and the rights available to you as a "Data Principal" under the Digital Personal
+          Data Protection Act, 2023 and the Digital Personal Data Protection Rules, 2025 (together, the "DPDP Act"),
+          and other applicable Indian laws including the Information Technology Act, 2000 and rules made thereunder.
+        </p>
+        <p>
+          By creating an account, browsing, or using any part of the Platform, you consent to the collection and
+          processing of your personal data as described in this Policy. If you do not agree, please do not use the Platform.
+        </p>
+      </Section>
+
+      <Section n={2} title="Who This Policy Applies To">
         <p>This Policy applies to:</p>
         <ul className="list-disc pl-5 space-y-1.5">
           <li>Pet Parents/Customers who register, browse, book, or transact on the Platform;</li>
@@ -29,10 +31,6 @@ export default function PrivacyPolicy() {
           <li>Visitors who browse houseofboarding.com without creating an account; and</li>
           <li>Any other individual whose personal data we receive in connection with the operation of the Platform (e.g., emergency contacts provided by a Pet Parent).</li>
         </ul>
-      </Section>
-
-      <Section n={2} title="Who This Policy Applies To">
-        <p>This Policy applies to all persons described in Section 1 above who interact with the Platform in any capacity.</p>
       </Section>
 
       <Section n={3} title="Information We Collect">
@@ -138,11 +136,13 @@ export default function PrivacyPolicy() {
           <li><span className="font-medium">Name:</span> Shrikant Wadhi</li>
           <li><span className="font-medium">Designation:</span> Grievance Officer, House of Boarding</li>
           <li><span className="font-medium">Email:</span>{' '}
-            <a href="mailto:houseofboarding@gmail.com" className="text-secondary font-semibold hover:underline">
-              houseofboarding@gmail.com
+            <a href="mailto:support@houseofboarding.com" className="text-secondary font-semibold hover:underline">
+              support@houseofboarding.com
             </a>
           </li>
-          <li><span className="font-medium">Phone:</span> 9890607240</li>
+          <li><span className="font-medium">Phone:</span>{' '}
+            <a href="tel:+919890607240" className="text-secondary font-semibold hover:underline">+91-9890607240</a>
+          </li>
           <li><span className="font-medium">Address:</span> 155, Adhyapak Nagar, Manewada, Nagpur, Maharashtra, India</li>
         </ul>
         <p className="mt-3">We will acknowledge complaints within 2–3 working days and endeavour to resolve them within one (1) month, in line with the Consumer Protection (E-Commerce) Rules, 2020.</p>

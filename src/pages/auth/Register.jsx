@@ -95,9 +95,9 @@ export default function Register() {
 
         <p className="relative text-white/40 text-xs">
           By creating an account you agree to our{' '}
-          <span className="text-white/60 underline cursor-pointer">Terms of Service</span>
+          <Link to="/terms" className="text-white/60 underline hover:text-white/90">Terms of Service</Link>
           {' '}and{' '}
-          <span className="text-white/60 underline cursor-pointer">Privacy Policy</span>.
+          <Link to="/privacy" className="text-white/60 underline hover:text-white/90">Privacy Policy</Link>.
         </p>
       </div>
 
