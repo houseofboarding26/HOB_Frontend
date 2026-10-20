@@ -26,3 +26,4 @@ dist-ssr
 # Local environment variables (do not commit)
 .env
 .env.local
+.env.example

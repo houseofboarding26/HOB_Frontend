@@ -92,6 +92,7 @@ export default function SafetyPolicy() {
         <p className="font-semibold text-gray-800 mb-2">3.2 Standard of Care</p>
         <ul className="list-disc pl-5 space-y-1.5 mb-5">
           <li>Hosts must provide care only for the pet types and species for which their listing has been verified and approved, and only for species that are lawful to keep, accommodate, or board in India.</li>
+          <li>The Host must provide the Pet Parent with at least three (3) real-time, timestamped videos, each of a minimum duration of 30 seconds, showing the pet’s activities, upon the Pet Parent’s request, for each day of the boarding period. This requirement applies throughout the pet’s stay at the Host’s facility.</li>
           <li>Review each pet's vaccination, medical, and behavioural information at the time of check-in.</li>
           <li>Provide adequate food, clean water, shelter, rest space, hygiene, and species-appropriate exercise/enrichment for the full duration of the stay, consistent with your declared property size, caretaker count, and experience.</li>
           <li>Never use physical punishment or any method that causes unnecessary fear, pain, or suffering to a boarded animal.</li>
