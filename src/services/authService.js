@@ -2,7 +2,7 @@ import api from './api'
 
 // Origin that hosts the backend OAuth endpoints. Defaults to the deployed
 // beta API; override with VITE_API_ORIGIN for other environments.
-const API_ORIGIN = (import.meta.env.VITE_API_ORIGIN || 'https://hob-beta.vercel.app').replace(/\/+$/, '')
+const API_ORIGIN = (import.meta.env.VITE_API_ORIGIN || 'https://hob-backend-pearl.vercel.app').replace(/\/+$/, '')
 
 // Full URL the browser navigates to in order to start the Google OAuth flow.
 // We pass the current frontend origin as `redirectUrl` so the backend knows

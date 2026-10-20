@@ -10,7 +10,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://hob-beta.vercel.app',
+        target: 'https://hob-backend-pearl.vercel.app',
         changeOrigin: true,
         secure: true,
         configure: (proxy) => {
