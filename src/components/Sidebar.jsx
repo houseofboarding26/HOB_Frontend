@@ -5,7 +5,7 @@ import Avatar from './Avatar'
 import hobLogo from '../assets/hob-logo.png';
 import {
   LayoutDashboard, Search, BookOpen,
-  Home, ClipboardList, DollarSign,
+  Home, ClipboardList,
   BarChart2, CreditCard, Users, LogOut, PawPrint, Video, Image,
   Menu, X,
 } from 'lucide-react'
@@ -21,7 +21,6 @@ const HOST_LINKS = [
   { to: '/host/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/host/property', icon: Home, label: 'My Property' },
   { to: '/host/requests', icon: ClipboardList, label: 'Booking Requests' },
-  { to: '/host/earnings', icon: DollarSign, label: 'Earnings' },
 ]
 
 const ADMIN_LINKS = [
