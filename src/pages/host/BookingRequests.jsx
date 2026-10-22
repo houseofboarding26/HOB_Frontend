@@ -69,10 +69,19 @@ export default function BookingRequests() {
           )
         } catch (e) {
           if (e?.response?.status === 403) {
-            res = await axios.get('/api/bookings/get', {
-              params: { hostId },
-              headers,
-            })
+            try {
+              res = await axios.get('/api/bookings/get', {
+                params: { hostId },
+                headers,
+              })
+            } catch (e2) {
+              // Backend returns 500 when host has no bookings — treat as empty
+              if (e2?.response?.status === 500) {
+                if (!cancelled) { setBookings([]); setLoading(false) }
+                return
+              }
+              throw e2
+            }
           } else {
             throw e
           }
