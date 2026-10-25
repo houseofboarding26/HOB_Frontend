@@ -17,7 +17,7 @@ export function calculateRefund(booking) {
     return {
       refundAmount: amount,
       percent: 90,
-      reason: 'Cancelled within 24 hours of booking',
+      reason: 'Cancelled before 24 hours of check-in',
     }
   }
 

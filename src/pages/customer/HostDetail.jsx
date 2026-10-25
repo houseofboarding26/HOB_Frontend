@@ -282,7 +282,7 @@ export default function HostDetail() {
         />
         <div className="relative max-w-5xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-end gap-5">
           <Avatar
-            name={host.name}
+            name={host.ownerName || host.name}
             src={host.avatar}
             className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border-4 border-white/60 shadow-xl text-3xl shrink-0"
           />
@@ -308,6 +308,9 @@ export default function HostDetail() {
                 </span>
               )}
             </div>
+            {host.ownerName && (
+              <p className="text-white/70 text-sm mb-1">{host.ownerName}</p>
+            )}
             <div className="flex items-center gap-1.5 text-white/75 text-sm mb-2">
               <MapPin size={14} />
               {host.location}
@@ -410,7 +413,7 @@ export default function HostDetail() {
                       {f.rooms    != null && <Fact label="Rooms"          value={f.rooms} />}
                       {f.cages    != null && <Fact label="Cages"          value={f.cages} />}
                       {f.roomArea != null && <Fact label="Room Area"      value={`${f.roomArea} sq.ft`} />}
-                      {f.cageDims          && <Fact label="Cage (L×B×H)" value={f.cageDims} />}
+                      {f.cageDims          && <Fact label="Cage Size (L×B×H)" value={f.cageDims} />}
                     </div>
                   </div>
                 ))}
@@ -444,7 +447,7 @@ export default function HostDetail() {
                       <span className="text-lg">{p.icon}</span>
                       <div className="min-w-0">
                         <p className="text-sm font-semibold text-gray-800">{p.name}</p>
-                        {p.info && <p className="text-xs text-gray-500 truncate">{p.info}</p>}
+                        {p.info && <p className="text-xs text-gray-500">{p.info}</p>}
                       </div>
                     </div>
                     <span className="font-bold text-secondary text-sm whitespace-nowrap">+₹{p.price}</span>
@@ -468,7 +471,7 @@ export default function HostDetail() {
           {host.rules && (
             <section className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
               <h2 className="font-bold text-gray-900 text-lg mb-3 flex items-center gap-2">
-                <ScrollText size={18} className="text-secondary" /> House Rules
+                <ScrollText size={18} className="text-secondary" /> Property Rules
               </h2>
               <p className="text-gray-600 leading-relaxed text-sm whitespace-pre-line">{host.rules}</p>
             </section>

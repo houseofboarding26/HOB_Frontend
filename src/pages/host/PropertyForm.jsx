@@ -663,7 +663,7 @@ function mapHostToForm(h) {
     priceCat: catP.price || '', priceBird: birdP.price || '', priceSmall: smallP.price || '',
     svcBoarding:  (h.Services || []).includes('overnight_multiday_boarding'),
     svcEmergency: (h.Services || []).includes('emergency_boarding'),
-    hostId: h._id || h.id, ...docs, ...amenFields,
+    hostId: h._id || h.id, hostStatus: h.status || '', ...docs, ...amenFields,
   }
 }
 
@@ -1279,10 +1279,12 @@ export default function PropertyForm() {
               <p className="text-sm text-gray-500 mt-0.5">
                 {[form.streetAddress, form.area, form.city, form.state].filter(Boolean).join(', ')}{form.pincode ? ` — ${form.pincode}` : ''}
               </p>
-              <div className="flex items-center gap-2 mt-2">
-                <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse shrink-0" />
-                <span className="text-xs font-semibold text-yellow-700">Pending Verification</span>
-              </div>
+              {form.hostStatus !== 'verified' && (
+                <div className="flex items-center gap-2 mt-2">
+                  <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse shrink-0" />
+                  <span className="text-xs font-semibold text-yellow-700">Pending Verification</span>
+                </div>
+              )}
             </div>
             <button
               type="button"
@@ -1559,13 +1561,15 @@ export default function PropertyForm() {
             <p className="font-bold text-gray-800 text-sm">Verification</p>
           </div>
 
-          <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl mb-4">
-            <div className="flex items-center gap-2 mb-1">
-              <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse shrink-0" />
-              <span className="text-sm font-bold text-yellow-700">Pending Verification</span>
+          {form.hostStatus !== 'verified' && (
+            <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl mb-4">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse shrink-0" />
+                <span className="text-sm font-bold text-yellow-700">Pending Verification</span>
+              </div>
+              <p className="text-xs text-yellow-600">House of boarding team reviews documents within 4-5 working days.</p>
             </div>
-            <p className="text-xs text-yellow-600">House of boarding team reviews documents within 4-5 working days.</p>
-          </div>
+          )}
 
           <p className="text-xs font-semibold text-gray-500 mb-3">Uploaded Documents</p>
           <div className="grid grid-cols-2 gap-2">
@@ -2050,6 +2054,7 @@ export default function PropertyForm() {
               label="Address Proof"
               hint="Any one — Electric bill, Aadhaar, rent agreement, or similar document."
               preview={addressProofPreview}
+              required
               onChange={e => handlePhotoInput(e, setAddressProofPreview, 'addressProof')}
               onRemove={() => handleRemoveFile(setAddressProofPreview, 'addressProof')}
             />
@@ -2081,14 +2086,16 @@ export default function PropertyForm() {
               </div>
             </div>
 
-            <div className="p-4 bg-gray-50 rounded-xl border border-gray-200">
-              <p className="text-xs text-gray-500 font-semibold uppercase tracking-wide mb-2">Verification Status</p>
-              <div className="flex items-center gap-2.5">
-                <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-pulse shrink-0" />
-                <span className="text-sm font-bold text-yellow-700">Pending Verification</span>
+            {form.hostStatus !== 'verified' && (
+              <div className="p-4 bg-gray-50 rounded-xl border border-gray-200">
+                <p className="text-xs text-gray-500 font-semibold uppercase tracking-wide mb-2">Verification Status</p>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-pulse shrink-0" />
+                  <span className="text-sm font-bold text-yellow-700">Pending Verification</span>
+                </div>
+                <p className="text-xs text-gray-500 mt-1.5">House of boarding team reviews documents within 4-5 working days.</p>
               </div>
-              <p className="text-xs text-gray-500 mt-1.5">House of boarding team reviews documents within 4-5 working days.</p>
-            </div>
+            )}
           </div>
         )}
       </div>

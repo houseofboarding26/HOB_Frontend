@@ -50,7 +50,7 @@ function buildServicesFromAPI(h) {
       services.push({ name: label, icon: PET_ICONS[petType] || '🐾', price: displayPrice, unit: 'night' })
     })
   }
-  if (hasEmergency) services.push({ name: 'Emergency Boarding', icon: '⚡', price: h.emergencyBoardingPrice ?? EMERGENCY_BOARDING_PRICE, unit: 'booking' })
+  if (hasEmergency) services.push({ name: 'Emergency Boarding', icon: '⚡', price: null, unit: 'booking' })
   return services
 }
 
@@ -373,10 +373,12 @@ export default function HostDashboard() {
                   <span className="text-xl">{s.icon}</span>
                   <span className="text-sm font-medium text-gray-800">{s.name}</span>
                 </div>
-                <div className="text-right shrink-0 ml-2">
-                  <span className="font-bold text-secondary text-sm">₹{s.price}</span>
-                  <span className="text-gray-400 text-xs">/{s.unit}</span>
-                </div>
+                {s.price != null && (
+                  <div className="text-right shrink-0 ml-2">
+                    <span className="font-bold text-secondary text-sm">₹{s.price}</span>
+                    <span className="text-gray-400 text-xs">/{s.unit}</span>
+                  </div>
+                )}
               </div>
             ))}
           </div>

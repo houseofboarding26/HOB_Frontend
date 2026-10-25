@@ -5,7 +5,7 @@ export default function SafetyPolicy() {
     <LegalPage
       title="Safety & Responsibilities Policy"
       subtitle="Detailed obligations of the Pet Parent/Customer, the Hospitality Partner/Host, and House of Boarding"
-      lastUpdated="houseofboarding.com | Nagpur, Maharashtra, India"
+      lastUpdated="Effective Date: 18 October 2026 · Version 1.0"
     >
       <p className="text-gray-600 text-sm leading-relaxed mb-7">
         This Policy sets out, in detail, the safety-related responsibilities of each party involved in a booking

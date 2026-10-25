@@ -201,9 +201,12 @@ export function AuthProvider({ children }) {
 
     // The JWT carries no role, so fetch the authoritative role (+ name/avatar)
     // from the backend, then redirect based on it: admin → admin panel,
-    // host → host panel, customer → website.
+    // host → host panel, customer → website (or back to wherever they were
+    // headed before being sent to login, e.g. a host page after "Book Now").
     refreshUser(saved.id, { syncRole: true }).then((fresh) => {
-      navigate(roleHome(fresh?.role || saved.role), { replace: true })
+      const postRedirect = localStorage.getItem('postLoginRedirect')
+      localStorage.removeItem('postLoginRedirect')
+      navigate(postRedirect || roleHome(fresh?.role || saved.role), { replace: true })
     })
   }, [])
 

@@ -749,7 +749,7 @@ export default function BookingFlow() {
                       <span className="text-lg shrink-0">{a.icon}</span>
                       <span className="flex-1 min-w-0">
                         <span className="block text-sm font-semibold text-gray-800">{a.name}</span>
-                        {a.info && <span className="block text-xs text-gray-500 truncate">{a.info}</span>}
+                        {a.info && <span className="block text-xs text-gray-500">{a.info}</span>}
                       </span>
                       <span className="text-sm font-bold text-secondary shrink-0">
                         +₹{(Number(a.price) || 0).toLocaleString('en-IN')}

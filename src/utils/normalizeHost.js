@@ -171,7 +171,8 @@ export function normalizeHost(h) {
   const businessType = bt === 'professional' ? 'professional' : 'homestay'
 
   const photos = h.propertyPhotos || h.photos || []
-  const name   = h.propertyName || h.nameOfBusiness || 'Unknown'
+  const name      = h.nameOfBusiness || h.propertyName || 'Unknown'
+  const ownerName = h.propertyName || ''
   // Use a real profile photo only if the API provides one; otherwise the
   // <Avatar> component renders the host's initials (e.g. "Aman Singh" → "AS").
   const avatar = h.avatar || h.photoUrl || h.user?.avatar || ''
@@ -179,6 +180,7 @@ export function normalizeHost(h) {
   return {
     id:          h._id || h.id,
     name,
+    ownerName,
     avatar,
     city,
     area,

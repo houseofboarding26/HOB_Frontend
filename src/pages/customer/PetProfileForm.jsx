@@ -660,17 +660,17 @@ export default function PetProfileForm() {
                       />
                     </div>
 
-                    {/* Size — auto-selected from weight, but still adjustable */}
+                    {/* Size — read-only, derived from weight */}
                     <div>
-                      <label className={labelClass}>Size</label>
-                      <div className="flex gap-2">
+                      <label className={labelClass}>Size <span className="text-gray-400 font-normal text-xs">(auto-set by weight)</span></label>
+                      <div className="flex gap-2 pointer-events-none">
                         {['Small', 'Medium', 'Large'].map((s) => (
                           <RadioPill
                             key={s}
                             name="size"
                             value={s}
                             checked={size === s}
-                            onChange={(e) => setSize(e.target.value)}
+                            onChange={() => {}}
                             label={s}
                           />
                         ))}
