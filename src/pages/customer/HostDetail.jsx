@@ -308,9 +308,9 @@ export default function HostDetail() {
                 </span>
               )}
             </div>
-            {host.ownerName && (
+            {/* {host.ownerName && (
               <p className="text-white/70 text-sm mb-1">{host.ownerName}</p>
-            )}
+            )} */}
             <div className="flex items-center gap-1.5 text-white/75 text-sm mb-2">
               <MapPin size={14} />
               {host.location}

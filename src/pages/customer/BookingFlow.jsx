@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import Avatar from '../../components/Avatar'
 import RazorpayPayment from '../../components/RazorpayPayment'
 import { useAuth } from '../../context/AuthContext'
@@ -150,17 +152,19 @@ export default function BookingFlow() {
     if (!host?.id) return
     let cancelled = false
 
-    // No auth header — holiday availability is public info.
-    // Sending a customer token causes 403 because the endpoint checks host role.
-    axios.get(`/api/host/holiday/get/${host.id}`)
+    const token = localStorage.getItem('token')
+    axios.get('/api/host/holiday/get', {
+      params: { hostId: host.id },
+      headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+    })
       .then((res) => {
         if (cancelled) return
         const raw = res.data?.data ?? res.data
-        // API may return a single object or an array — normalise to array.
         const list = Array.isArray(raw) ? raw : raw && raw.id ? [raw] : []
         setHolidayRanges(list.map((h) => ({
-          from: (h.fromDate || '').slice(0, 10),
-          to:   (h.toDate   || '').slice(0, 10),
+          from:   (h.fromDate || '').slice(0, 10),
+          to:     (h.toDate   || '').slice(0, 10),
+          reason: h.reason || '',
         })))
       })
       .catch(() => {})
@@ -596,63 +600,97 @@ export default function BookingFlow() {
           </div>
 
           {/* Dates */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                Check-in <span className="text-red-400">*</span>
-              </label>
-              <input
-                type="date"
-                value={checkIn}
-                min={today}
-                onChange={(e) => {
-                  const v = e.target.value
-                  if (v < today) { setDateError('Check-in cannot be in the past.'); return }
-                  const out = (!checkOut || checkOut < v) ? v : checkOut
-                  if (overlapsHoliday(v, out)) {
-                    setDateError(`This host is unavailable from ${holidayRanges.find(r => v <= r.to && out >= r.from)?.from} to ${holidayRanges.find(r => v <= r.to && out >= r.from)?.to}. Please choose different dates.`)
-                    setCheckIn('')
-                    return
-                  }
-                  setDateError('')
-                  setCheckIn(v)
-                  if (!checkOut || checkOut < v) setCheckOut(v)
-                }}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-secondary/40"
-              />
-              {isEmergency && <p className="text-xs text-gray-400 mt-1">Same-day check-in bookings are considered emergency or hourly bookings and are non-refundable.</p>}
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                Check-out <span className="text-red-400">*</span>
-              </label>
-              <input
-                type="date"
-                value={checkOut}
-                min={checkIn || today}
-                onChange={(e) => {
-                  const v = e.target.value
-                  if (v < today) { setDateError('Check-out cannot be in the past.'); return }
-                  const from = checkIn || today
-                  if (overlapsHoliday(from, v)) {
-                    setDateError(`This host is unavailable from ${holidayRanges.find(r => from <= r.to && v >= r.from)?.from} to ${holidayRanges.find(r => from <= r.to && v >= r.from)?.to}. Please choose different dates.`)
-                    setCheckOut('')
-                    return
-                  }
-                  setDateError('')
-                  setCheckOut(v)
-                }}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-secondary/40"
-              />
-            </div>
-          </div>
+          {(() => {
+            // Build a Set of all holiday date strings (YYYY-MM-DD) for O(1) lookup.
+            const holidayDateSet = new Set()
+            holidayRanges.forEach(({ from, to }) => {
+              if (!from || !to) return
+              // Parse as local date (y, m, d) to avoid UTC-offset shifting the date.
+              const parseLocal = (s) => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d) }
+              const cur = parseLocal(from)
+              const end = parseLocal(to)
+              while (cur <= end) {
+                holidayDateSet.add(cur.toLocaleDateString('en-CA'))
+                cur.setDate(cur.getDate() + 1)
+              }
+            })
+            // Compare by date string to avoid timezone offset issues.
+            // new Date("YYYY-MM-DD") is UTC midnight but DatePicker passes local midnight,
+            // so object comparison would wrongly disable today in UTC+ timezones.
+            const toStr = (d) => d ? d.toLocaleDateString('en-CA') : ''
+            const isHolidayDate = (d) => holidayDateSet.has(toStr(d))
+            const filterCheckIn  = (d) => toStr(d) >= today && !isHolidayDate(d)
+            const filterCheckOut = (d) => {
+              const minStr = checkIn || today
+              return toStr(d) >= minStr && !isHolidayDate(d)
+            }
+            const toDateObj = (s) => {
+              if (!s) return null
+              const [y, m, day] = s.split('-').map(Number)
+              return new Date(y, m - 1, day)
+            }
+            return (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                    Check-in <span className="text-red-400">*</span>
+                  </label>
+                  <DatePicker
+                    selected={toDateObj(checkIn)}
+                    onChange={(d) => {
+                      const v = toStr(d)
+                      setDateError('')
+                      setCheckIn(v)
+                      if (!checkOut || checkOut < v) setCheckOut(v)
+                    }}
+                    filterDate={filterCheckIn}
+                    dateFormat="yyyy-MM-dd"
+                    placeholderText="Select check-in"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-secondary/40"
+                    wrapperClassName="w-full"
+                    highlightDates={[]}
+                    calendarClassName="rounded-xl shadow-lg border border-gray-200"
+                  />
+                  {isEmergency && <p className="text-xs text-gray-400 mt-1">Same-day check-in bookings are considered emergency or hourly bookings and are non-refundable.</p>}
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                    Check-out <span className="text-red-400">*</span>
+                  </label>
+                  <DatePicker
+                    selected={toDateObj(checkOut)}
+                    onChange={(d) => {
+                      setDateError('')
+                      setCheckOut(toStr(d))
+                    }}
+                    filterDate={filterCheckOut}
+                    minDate={toDateObj(checkIn) || toDateObj(today)}
+                    dateFormat="yyyy-MM-dd"
+                    placeholderText="Select check-out"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-secondary/40"
+                    wrapperClassName="w-full"
+                    calendarClassName="rounded-xl shadow-lg border border-gray-200"
+                  />
+                </div>
+              </div>
+            )
+          })()}
           {dateError && (
             <p className="text-xs text-red-500 -mt-2">{dateError}</p>
           )}
           {holidayRanges.length > 0 && (
-            <p className="text-xs text-amber-600">
-              Unavailable dates: {holidayRanges.map((r) => `${r.from} – ${r.to}`).join(', ')}
-            </p>
+            <div className="space-y-2">
+              {holidayRanges.map((r, i) => (
+                <div key={i} className="rounded-xl border border-red-200 bg-red-50 px-4 py-3">
+                  <p className="text-xs font-semibold text-red-600">
+                    Unavailable: {r.from} – {r.to}
+                  </p>
+                  {r.reason && (
+                    <p className="text-xs text-red-500 mt-0.5">Reason: {r.reason}</p>
+                  )}
+                </div>
+              ))}
+            </div>
           )}
 
           {nights > 0 && (
