@@ -126,7 +126,7 @@ function HostCard({ host, onClick }) {
           </div>
         )}
         <Avatar
-          name={host.ownerName || host.name}
+          name={host.businessName || host.ownerName || host.name}
           src={host.avatar}
           className="absolute bottom-0 right-3 translate-y-1/2 w-14 h-14 rounded-full border-4 border-white shadow-md text-base"
         />

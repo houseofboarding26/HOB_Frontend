@@ -282,7 +282,7 @@ export default function HostDetail() {
         />
         <div className="relative max-w-5xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-end gap-5">
           <Avatar
-            name={host.ownerName || host.name}
+            name={host.businessName || host.ownerName || host.name}
             src={host.avatar}
             className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border-4 border-white/60 shadow-xl text-3xl shrink-0"
           />
