@@ -339,7 +339,7 @@ export default function HostDetail() {
 
           {/* About */}
           <section className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-            <h2 className="font-bold text-gray-900 text-lg mb-3">About {host.name.split(' ')[0]}</h2>
+            <h2 className="font-bold text-gray-900 text-lg mb-3">About</h2>
             <p className="text-gray-600 leading-relaxed text-sm">{host.bio}</p>
 
             <div className="grid grid-cols-3 gap-3 mt-5">

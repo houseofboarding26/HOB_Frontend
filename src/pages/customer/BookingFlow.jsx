@@ -393,7 +393,9 @@ export default function BookingFlow() {
         .total td.amt{color:#2d6be4}
         .foot{margin-top:20px;font-size:11px;color:#9ca3af;text-align:center}
       </style></head><body>
-      <div class="brand">House of boarding</div>
+      <div class="brand">
+      <img className='hob-logo' style={{ width: '100px', height: 'auto' }} src='https://www.houseofboarding.com/assets/hob-logo-CY0XlYHz.png' alt='House Of Boarding' />
+      </div>
       <div class="sub">Payment Receipt</div>
       <table>${meta}</table>
       <h2>Charges</h2>
@@ -678,9 +680,9 @@ export default function BookingFlow() {
           {dateError && (
             <p className="text-xs text-red-500 -mt-2">{dateError}</p>
           )}
-          {holidayRanges.length > 0 && (
+          {holidayRanges.filter((r) => r.to && r.to >= new Date().toLocaleDateString('en-CA')).length > 0 && (
             <div className="space-y-2">
-              {holidayRanges.map((r, i) => (
+              {holidayRanges.filter((r) => r.to && r.to >= new Date().toLocaleDateString('en-CA')).map((r, i) => (
                 <div key={i} className="rounded-xl border border-red-200 bg-red-50 px-4 py-3">
                   <p className="text-xs font-semibold text-red-600">
                     Unavailable: {r.from} – {r.to}
