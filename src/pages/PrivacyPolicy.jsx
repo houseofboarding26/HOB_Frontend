@@ -5,7 +5,7 @@ export default function PrivacyPolicy() {
     <LegalPage
       title="Privacy Policy"
       subtitle="Governing the collection, use and disclosure of personal data on the House of Boarding platform"
-      lastUpdated="Effective Date: 18 October 2026 · Version 1.0"
+      lastUpdated="18 October 2026"
     >
       <Section n={1} title="Introduction">
         <p>

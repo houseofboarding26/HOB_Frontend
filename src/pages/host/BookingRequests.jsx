@@ -30,7 +30,7 @@ function normalizeBooking(b) {
     checkOut: b.checkOut || b.checkOutDate || b.endDate    || '',
     status: String(b.status || '').toLowerCase(),
     total: Number(
-      b.amountSummary?.totalAmount ?? b.totalAmount ?? b.total ?? b.amount ?? 0
+      b.booking_amount ?? b.bookingAmount ?? b.totalAmount ?? b.total ?? b.grandTotal ?? 0
     ),
     notes: b.specialInstructions || b.notes || '',
   }
@@ -109,7 +109,7 @@ export default function BookingRequests() {
     return () => { cancelled = true }
   }, [user?.id, user?.hostId])
 
-  const FILTERS = ['all', 'scheduled', 'confirmed', 'completed', 'cancelled']
+  const FILTERS = ['all', 'completed', 'cancelled']
   const filtered = filter === 'all'
     ? bookings
     : bookings.filter((r) => r.status === filter || (filter === 'cancelled' && r.status === 'canceled'))
@@ -173,9 +173,9 @@ export default function BookingRequests() {
                   <span className={`px-3 py-1 rounded-full text-xs font-medium capitalize ${STATUS_STYLE[r.status] || 'bg-gray-100 text-gray-600'}`}>
                     {r.status}
                   </span>
-                  {r.total > 0 && (
-                    <p className="font-bold text-gray-900">₹{r.total.toLocaleString('en-IN')}</p>
-                  )}
+                  <p className="font-bold text-gray-900">
+                    {r.total > 0 ? `₹${r.total.toLocaleString('en-IN')}` : '—'}
+                  </p>
                 </div>
               </div>
             </div>

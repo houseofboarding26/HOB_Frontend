@@ -63,8 +63,11 @@ export function normalizeCustomerBooking(b, i = 0) {
     // amountSummary we sent on creation when the backend doesn't store one.
     // Preserves 0 as a valid value (unpaid/cancelled bookings).
     totalAmount: (() => {
-      const raw = b.totalAmount ?? b.total ?? b.amount ?? b.grandTotal
-        ?? b.amountSummary?.totalAmount
+      // booking_amount is the backend's authoritative field (added to fix
+      // frontend-calculated amounts that were incorrectly stored in amountSummary).
+      // amountSummary.totalAmount is intentionally excluded — it was set by the
+      // frontend at booking creation time and contains wrong computed values.
+      const raw = b.booking_amount ?? b.bookingAmount ?? b.totalAmount ?? b.total ?? b.grandTotal
       if (raw == null) return null
       const n = Number(raw)
       return isNaN(n) ? null : n

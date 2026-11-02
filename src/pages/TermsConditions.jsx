@@ -5,7 +5,7 @@ export default function TermsConditions() {
     <LegalPage
       title="Terms & Conditions"
       subtitle="Platform Terms of Use for Pet Parents/Customers and Hospitality Partners/Hosts"
-      lastUpdated="Effective Date: 18 October 2026 · Version 1.0"
+      lastUpdated="18 October 2026"
     >
       <Section n={1} title="Acceptance of Terms">
         <p>

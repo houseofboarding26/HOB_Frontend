@@ -4,7 +4,7 @@ import { CalendarDays, ShieldCheck, X, AlertCircle, Loader2, PawPrint } from 'lu
 import { toast } from 'react-hot-toast'
 import { useAuth } from '../../context/AuthContext'
 import { calculateRefund } from '../../utils/cancellationPolicy'
-import { getMyBookings, cancelBooking, computeBookingTotal } from '../../services/bookingService'
+import { getMyBookings, cancelBooking } from '../../services/bookingService'
 import { getHostById } from '../../services/hostService'
 import { normalizeHost } from '../../utils/normalizeHost'
 import { formatDate } from '../../utils/formatDate'
@@ -67,9 +67,7 @@ export default function MyBookings() {
           ...b,
           petName,
           hostName: host?.name || 'Host',
-          // Use the exact amount stored on the booking (what the customer paid).
-          // Only recompute when the backend didn't store a total.
-          total: b.totalAmount ?? computeBookingTotal(b, host, petsById),
+          total: b.totalAmount ?? 0,
         }
       })
       setBookings(enriched)

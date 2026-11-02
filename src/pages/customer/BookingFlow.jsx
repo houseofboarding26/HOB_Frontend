@@ -646,7 +646,7 @@ export default function BookingFlow() {
                       if (!checkOut || checkOut < v) setCheckOut(v)
                     }}
                     filterDate={filterCheckIn}
-                    dateFormat="yyyy-MM-dd"
+                    dateFormat="dd-MM-yyyy"
                     placeholderText="Select check-in"
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-secondary/40"
                     wrapperClassName="w-full"
@@ -667,7 +667,7 @@ export default function BookingFlow() {
                     }}
                     filterDate={filterCheckOut}
                     minDate={toDateObj(checkIn) || toDateObj(today)}
-                    dateFormat="yyyy-MM-dd"
+                    dateFormat="dd-MM-yyyy"
                     placeholderText="Select check-out"
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-secondary/40"
                     wrapperClassName="w-full"
